@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      TVMaze App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<div *ngIf="isLoading">
+  <ion-spinner name="bubbles"></ion-spinner>
+</div>
+<div *ngIf="isErr">
+  <h3>Something went wrong. Please try later</h3>
+</div>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let program of programsList" size="12" size-xs="12" size-sm="12" size-md="4">
+        <ion-card color="secondary" padding>
+          <ion-header padding>
+            <ion-card-title *ngIf="program?.show?.name" color="dark">{{ program?.show?.name }}</ion-card-title>
+            <ion-card-subtitle>{{ program.name}}</ion-card-subtitle>
+          </ion-header>
+          <ion-card-content>
+            <img [src]="program.show.image?.medium || '../../assets/images/default.jpg'" />
+          </ion-card-content>
+          <ion-footer>
+            <ion-toolbar color="secondary">
+              <ion-row>
+                <ion-col>
+                  <div class="ion-text-center">
+                    <ion-text color="dark">
+                      <h4>
+                        <strong>Time :</strong> {{program?.airtime}} </h4>
+                    </ion-text>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <div class="ion-text-center">
+                    <ion-button color="tertiary" class="text-center" [routerLink]="['/shows', program?.show?.id]">See Details</ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6" style="text-align: center; background: var(--ion-color-tertiary);">
+                  <div>
+                    <span class="text-small" *ngIf="program?.season">Season : </span> {{ program?.season}}</div>
+                </ion-col>
+                <ion-col size-md="6" style="text-align: center;background: var(--ion-color-tertiary);">
+                  <div>
+                    <span class="text-small" *ngIf="program?.number">Episode no. : </span> {{ program?.number}}</div>
+                </ion-col>
+              </ion-row>
+
+            </ion-toolbar>
+          </ion-footer>
+
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
