@@ -1,5 +1,7 @@
 {
   "name": "TvMazeAndriodApp",
-  "integrations": {},
+  "integrations": {
+    "cordova" : {}
+  },
   "type": "angular"
 }
