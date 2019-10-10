@@ -9,7 +9,7 @@ import { takeWhile, finalize} from 'rxjs/operators';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit, OnDestroy {
-  showDetail: Object;
+  showDetail: any;
   private alive: boolean;
   isLoading: boolean;
   isErr: boolean;

@@ -1,0 +1,7 @@
+{
+  "appId": "com.tvmaze.app",
+  "appName": "TVmaze",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

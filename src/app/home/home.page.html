@@ -17,7 +17,7 @@
     <ion-row>
       <ion-col *ngFor="let program of programsList" size="12" size-xs="12" size-sm="12" size-md="4">
         <ion-card [routerLink]="['/shows', program?.show?.id]">
-          <img [src]="program.show.image?.medium || '../../assets/images/default.jpg'" />
+          <img [src]="program?.show?.image?.original || '../../assets/images/default.jpg'" />
           <ion-card-header>
             <ion-card-subtitle *ngIf="program?.show?.name">{{ program?.show?.name }}</ion-card-subtitle>
             <ion-card-title>{{ program.name}}</ion-card-title>
