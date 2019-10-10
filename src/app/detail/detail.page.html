@@ -1,36 +1,44 @@
-<ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="home" [text]="Back"></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
-<ion-content fullscreen class="ion-padding">
-    <ion-card>
-        <ion-item color="dark">          
-          <h2>{{showDetail?.name}}</h2>
-        </ion-item>
-      
-        <!-- <img [src]="showDetail.image?.original || '../assets/images/defaultbig.jpg'" /> -->
-        <img [src]="showDetail?.image?.original|| '../../assets/images/default.jpg'"/>
-      
-        <ion-card-content>
-            <span *ngIf="showDetail?.schedule.time"><strong> Time:</strong> {{showDetail?.schedule.time}}<br/></span>        
-            <span *ngIf="showDetail?.runtime"><strong> RunTime:</strong> {{showDetail?.runtime}}<br/></span>        
-            <span *ngIf="showDetail?.status"><strong> Status:</strong> {{showDetail?.status}}<br/></span>        
-            <span *ngIf="showDetail?.type"><strong> Type:</strong> {{showDetail?.type}}<br/></span>                
-            <span *ngIf="showDetail?.rating.average"><strong> Rating:</strong> {{showDetail?.rating.average }}<br/></span>
-            <strong> Schedule:</strong>
-            <div *ngFor="let day of showDetail?.schedule?.days">
-              {{ day }}
-            </div>
-            <strong>Summary :</strong>
-            <div [innerHTML]="showDetail?.summary"></div>
-            <div class="moreInfo">
-              For more information,
-              <a href={{showDetail?.url}} target="_blank">Click Here</a>
-            </div>
-        </ion-card-content>
-      </ion-card>
+<ion-content fullscreen>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button [routerLink]="['/']" color="secondary">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="image-wrapper">
+    <img [src]="showDetail?.image?.original || '../../assets/images/default.jpg'"/>
+  </div>
+  <div class="show-details ion-padding">
+    <h2 class="ion-no-margin">{{showDetail?.name}}</h2>
+    <div class="chips-wrapper ion-padding-vertical">
+      <ion-chip *ngFor="let genre of showDetail?.genres" color="secondary">
+        <ion-label color="dark">{{ genre }}</ion-label>
+      </ion-chip>
+    </div>
+    <div class="detail-row">
+      <label>Time</label>: {{showDetail?.schedule.time || '-'}}
+    </div>
+    <div class="detail-row">
+      <label>Status</label>: {{showDetail?.status || '-' }}
+    </div>
+    <div class="detail-row">
+      <label>Run time</label>: {{showDetail?.runtime || '-' }}
+    </div>
+    <div class="detail-row">
+      <label>Rating</label>: {{showDetail?.rating.average || '-' }}
+    </div>
+    <div class="detail-row">
+      <label>Schedule</label>: 
+      <ng-container *ngFor="let day of showDetail?.schedule?.days; let i = index">
+        {{ day }}{{ i + 1 >= showDetail?.schedule?.days?.length ? '.' : ',' }}
+      </ng-container>
+    </div>
+    <div class="summary">
+      <label>Summary</label>
+      <div class="html" [innerHTML]="showDetail?.summary"></div>
+    </div>
+    <div class="moreInfo">
+      For more information,
+      <a href={{showDetail?.url}} target="_blank">Click Here</a>
+    </div>
+  </div>
 </ion-content>
